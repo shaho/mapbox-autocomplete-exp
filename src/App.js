@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+import Autcomplete from "./Autcomplete";
 
 function App() {
+  const [place, setPlace] = useState(null);
+  const handleSelect = (place) => {
+    setPlace({ place });
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Test</h1>
+      <Autcomplete onSelect={handleSelect} />
+      {!place && <div>No place selected</div>}
+      {place && (
+        <div>
+          Info about the place: <pre>{JSON.stringify(place, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
